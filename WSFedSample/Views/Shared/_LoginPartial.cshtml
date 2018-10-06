@@ -1,0 +1,23 @@
+@using System.Security.Principal
+@using WSFedSample.Security
+
+@{
+    var identity = ViewBag.Identity as LogonIdentity;
+}
+
+<ul class="navbar-nav">
+@if (identity != null && identity.IsAuthorized == true)
+{
+        <li class="nav-item">
+            <span class="nav-text text-dark">Hello @identity.DisplayName!</span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="SignOut">Sign out</a>
+        </li>
+}
+else
+{
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="SignIn">Sign in</a>
+        </li>}
+</ul>
